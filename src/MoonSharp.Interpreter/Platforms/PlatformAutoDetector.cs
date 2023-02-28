@@ -92,26 +92,20 @@ namespace MoonSharp.Interpreter.Platforms
 					IsUnityIL2CPP = true;
 	#endif
 	#elif !(NETFX_CORE)
-			var types = AppDomain.CurrentDomain
-				.GetAssemblies()
-				.SelectMany(a => a.SafeGetTypes());
-			
-			var foundUnity = false;
-			
-			foreach (var foundType in types)
+			var trace = new System.Diagnostics.StackTrace();
+			// if frames contain UniTAS.Plugin.Tests then false
+			var foundTest = trace.GetFrames()?.Any(f => f.GetMethod().DeclaringType?.Namespace?.StartsWith("UniTAS.Plugin.Tests") is true) ?? false;
+			if (foundTest)
 			{
-				if (foundType.FullName?.StartsWith("UnityEngine.") is true)
-				{
-					foundUnity = true;
-				}
-				
-				if (foundType.FullName?.StartsWith("Plugin.Tests") is true)
-				{
-					foundUnity = false;
-					break;
-				}
+				IsRunningOnUnity = false;
 			}
-			IsRunningOnUnity = foundUnity;
+			else
+			{
+				IsRunningOnUnity = AppDomain.CurrentDomain
+					.GetAssemblies()
+					.SelectMany(a => a.SafeGetTypes())
+					.Any(t => t.FullName?.StartsWith("UnityEngine.") is true);
+			}
 	#endif
 #endif
 
