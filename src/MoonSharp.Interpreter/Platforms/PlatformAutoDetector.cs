@@ -97,7 +97,6 @@ namespace MoonSharp.Interpreter.Platforms
 				.SelectMany(a => a.SafeGetTypes());
 			
 			var foundUnity = false;
-			var foundTest = false;
 			
 			foreach (var foundType in types)
 			{
@@ -108,7 +107,6 @@ namespace MoonSharp.Interpreter.Platforms
 				
 				if (foundType.FullName?.StartsWith("Plugin.Tests") is true)
 				{
-					foundTest = true;
 					foundUnity = false;
 					break;
 				}
