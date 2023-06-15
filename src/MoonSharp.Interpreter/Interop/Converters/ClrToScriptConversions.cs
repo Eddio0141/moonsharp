@@ -5,7 +5,7 @@ using MoonSharp.Interpreter.Interop.RegistrationPolicies;
 
 namespace MoonSharp.Interpreter.Interop.Converters
 {
-	internal static class ClrToScriptConversions
+	public static class ClrToScriptConversions
 	{
 		/// <summary>
 		/// Tries to convert a CLR object to a MoonSharp value, using "trivial" logic.
@@ -101,7 +101,7 @@ namespace MoonSharp.Interpreter.Interop.Converters
 		/// <summary>
 		/// Tries to convert a CLR object to a MoonSharp value, using more in-depth analysis
 		/// </summary>
-		internal static DynValue ObjectToDynValue(Script script, object obj)
+		public static DynValue ObjectToDynValue(Script script, object obj)
 		{
 			DynValue v = TryObjectToSimpleDynValue(script, obj);
 
