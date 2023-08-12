@@ -46,7 +46,7 @@
     <Prefer32Bit>false</Prefer32Bit>
     <NoWarn>;IL2121;CS1591;IL2121;CS1573;CS1572;CS0419;CS1570</NoWarn>
     <RunCodeAnalysis>false</RunCodeAnalysis>
-    <DocumentationFile>bin\Release\MoonSharp.Interpreter.xml</DocumentationFile>
+    <DocumentationFile></DocumentationFile>
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
